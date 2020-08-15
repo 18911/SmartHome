@@ -1,0 +1,46 @@
+﻿
+@{
+    ViewData["Title"] = "Account";
+}
+
+@model SmartHome.Models.Account
+
+
+@{
+    Layout = "../Shared/_Layout.cshtml";
+}
+
+<h1 class="header float-xl-left orange-text">@Model.client.Login account</h1>
+<br />
+<div class="row">
+    <div class="col s12">
+        <ul class="tabs tabs-fixed-width tab-demo z-depth-1">
+            @for (int i = 0; i < Model.listRoomDevices.Count(); i++){
+                <li class="tab col s3"><a href="#@Model.listRoomDevices[i].Room.IdRoom">@Model.listRoomDevices[i].Room.Name</a></li>
+            }
+                <li class="tab col s3"><a href="#settings">Rooms settings</a></li>
+        </ul>
+    </div>
+    @for (int i = 0; i < Model.listRoomDevices.Count(); i++){
+     <div id="@Model.listRoomDevices[i].Room.IdRoom" class="col s12">
+         <div class="collection">
+             <ul>
+                 @for (int j = 0; j < Model.listRoomDevices[i].listParticulatesSensors.Count(); j++){
+                     <li><a href='@Url.Action("GetStarted","SmartHome")' class="collection-item"><span class="badge">0</span>@Model.listRoomDevices[i].listParticulatesSensors[j].Name</a></li>
+                 }
+                 @for (int j = 0; j < Model.listRoomDevices[i].listTemperatureSensors.Count(); j++) {
+                     <li><a href='@Url.Action("GetStarted","SmartHome")' class="collection-item"><span class="badge">0</span>@Model.listRoomDevices[i].listTemperatureSensors[j].Name</a></li>
+                 }
+             </ul>
+         </div>
+     </div>
+    }
+    <div id="settings" class="col s12">
+        <div class="collection">
+            <ul>
+                <li><a href="" class="collection-item">Add new room</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+

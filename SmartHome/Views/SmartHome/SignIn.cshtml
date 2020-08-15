@@ -1,0 +1,36 @@
+﻿
+@{
+    ViewData["Title"] = "SignIn";
+}
+
+@model SmartHome.Request.SignInRequest
+
+@{
+    Layout = "../Shared/_Layout.cshtml";
+}
+
+<h1 class="header float-xl-left orange-text">Sign In</h1>
+<br><br>
+<div class="row">
+    <form class="col s12" method="post" action="/smarthome/signin">
+        <div class="row">
+            <div class="input-field col s6">
+                <label>Login</label>
+                @Html.EditorFor(e => e.Login)
+                <span>@Html.ValidationMessageFor(e => e.Login)</span>
+            </div>
+        </div>
+        <br><br>
+        <div class="row">
+            <div class="input-field col s12">
+                <label>Password</label>
+                @Html.EditorFor(e => e.Password)
+                <span>@Html.ValidationMessageFor(e => e.Password)</span>
+            </div>
+        </div>
+        <br><br>
+        <input type="submit" value="Send" class="btn">
+    </form>
+    <br><br>
+</div>
+

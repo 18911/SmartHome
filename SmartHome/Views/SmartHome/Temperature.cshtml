@@ -1,0 +1,63 @@
+﻿@{
+    ViewData["Title"] = "Temperature";
+}
+
+@model IEnumerable<SmartHome.Models.Temperature>
+
+@{
+    Layout = "../Shared/_Layout.cshtml";
+}
+
+
+<div class="box">
+    <script src="charts/js/highcharts.js"></script>
+    <script src="charts/js/modules/exporting.js"></script>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-10 col-md-offset-1">
+                <div class="panel panel-default">
+                    <div class="panel-heading">Temperature sensor</div>
+                    <div class="panel-body">
+                        <div id="container"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        var tArray = new Array(@Model.Count());
+        @foreach (var temperature in Model){
+            @:tArray.push(@temperature.TValue)
+        }
+        $(function(){
+          $('#container').highcharts({
+            chart: {
+                type: 'line'
+            },
+            time: {
+                timezone: 'Europe/Warsaw'
+            },
+            xAxis: {
+                title: {
+                    text: 'Time'
+                },
+              categories: js
+            },
+            title: {
+                text: 'Today'
+            },
+            yAxis: {
+                title: {
+                    text: 'Temperature'
+                }
+                },
+            series: [{
+                name: 'Celsius',
+                data: tArray 
+            }]
+          })
+        })
+    </script>
+</div>
+
+
