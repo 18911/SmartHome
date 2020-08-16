@@ -10,15 +10,15 @@ namespace SmartHome.Models{
 
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public int idTemperature { get; set; }
+        public int id_temperature { get; set; }
 
         [ForeignKey("Device")]
-        public int idDevice { get; set; }
+        public int id_device { get; set; }
         [Required]
-        public DateTime mDate { get; set; }
+        public float t_value { get; set; }
         [Required]
-        public DateTime mTime { get; set; }
+        public DateTime m_date { get; set; }
         [Required]
-        public float tValue { get; set; }
+        public DateTime m_time { get; set; }
     }
 }

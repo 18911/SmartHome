@@ -10,7 +10,7 @@ namespace SmartHome.Models{
     public class Client{
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public int idClient { get; set; }
+        public int id_client { get; set; }
         [Required]
         public string login { get; set; }
         [Email]
@@ -20,6 +20,6 @@ namespace SmartHome.Models{
 
         public string salt { get; set; }
 
-        public string refreshToken { get; set; }
+        public string refresh_token { get; set; }
     }
 }

@@ -16,22 +16,22 @@
         <div class="row">
             <div class="input-field col s12">
                 <label for="login">Login</label>
-                @Html.EditorFor(e=>e.Login)
-                <span>@Html.ValidationMessageFor(v => v.Login)</span>
+                @Html.EditorFor(e=>e.login)
+                <span>@Html.ValidationMessageFor(v => v.login)</span>
             </div>
         </div>
         <div class="row">
             <div class="input-field col s12">
                 <label for="email">Email</label>
-                @Html.EditorFor(e => e.Email)
-                <span>@Html.ValidationMessageFor(v => v.Email)</span>
+                @Html.EditorFor(e => e.email)
+                <span>@Html.ValidationMessageFor(v => v.email)</span>
             </div>
         </div>
         <div class="row">
             <div class="input-field col s12">
                 <label for="password">Password</label>
-                @Html.EditorFor(e => e.Password)
-                <span>@Html.ValidationMessageFor(v => v.Password)</span>
+                @Html.EditorFor(e => e.password)
+                <span>@Html.ValidationMessageFor(v => v.password)</span>
             </div>
         </div>
         <input type="submit" value="Send" class="btn">

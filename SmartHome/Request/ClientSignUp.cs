@@ -8,11 +8,11 @@ using System.Threading.Tasks;
 namespace SmartHome.Models{
     public class ClientSignUp{
         [Required]
-        public string Login { get; set; }
+        public string login { get; set; }
         [Required]
         [Email]
-        public string Email { get; set; }
+        public string email { get; set; }
         [Required]
-        public string Password { get; set; }
+        public string password { get; set; }
     }
 }

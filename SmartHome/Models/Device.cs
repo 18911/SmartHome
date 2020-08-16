@@ -9,10 +9,10 @@ namespace SmartHome.Models{
     public class Device{
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public int idDevice { get; set; }
+        public int id_device { get; set; }
 
         [ForeignKey("Room")]
-        public int idRoom { get; set; }
+        public int id_room { get; set; }
 
         [Required]
         public string name { get; set; }
@@ -20,9 +20,9 @@ namespace SmartHome.Models{
         [Required]
         public string type { get; set; }
 
-        public Device(int idDevice,int idRoom, string name, string type) {
-            this.idDevice = idDevice;
-            this.idRoom = idRoom;
+        public Device(int id_device,int id_room, string name, string type) {
+            this.id_device = id_device;
+            this.id_room = id_room;
             this.name = name;
             this.type = type;
         }

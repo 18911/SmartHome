@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 namespace SmartHome.Request{
     public class SignInRequest{
         [Required]
-        public string Login { get; set; }
+        public string login { get; set; }
         [Required]
-        public string Password { get; set; }
+        public string password { get; set; }
     }
 }

@@ -9,9 +9,9 @@ namespace SmartHome.Models{
     public class Room{
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public int idRoom { get; set; }
+        public int id_room { get; set; }
         [ForeignKey("Client")]
-        public int idClient { get; set; }
+        public int id_client { get; set; }
         [Required]
         public string name { get; set; }
     }

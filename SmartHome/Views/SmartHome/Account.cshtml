@@ -22,13 +22,13 @@
     <div class="col s12">
         <ul class="tabs tabs-fixed-width tab-demo z-depth-1">
             @for (int i = 0; i < Model.listRoomDevices.Count(); i++){
-                <li class="tab col s3"><a href="#@Model.listRoomDevices[i].Room.idRoom">@Model.listRoomDevices[i].Room.name</a></li>
+                <li class="tab col s3"><a href="#@Model.listRoomDevices[i].Room.id_room">@Model.listRoomDevices[i].Room.name</a></li>
             }
                 <li class="tab col s3"><a href="#settings">Rooms settings</a></li>
         </ul>
     </div>
     @for (int i = 0; i < Model.listRoomDevices.Count(); i++){
-     <div id="@Model.listRoomDevices[i].Room.idRoom" class="col s12">
+     <div id="@Model.listRoomDevices[i].Room.id_room" class="col s12">
          <div class="collection">
              <ul>
                  @for (int j = 0; j < Model.listRoomDevices[i].listParticulatesSensors.Count(); j++){
