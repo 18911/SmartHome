@@ -27,7 +27,7 @@
     <script type="text/javascript">
         var tArray = new Array(@Model.Count());
         @foreach (var temperature in Model){
-            @:tArray.push(@temperature.TValue)
+            @:tArray.push(@temperature.tValue)
         }
         $(function(){
           $('#container').highcharts({

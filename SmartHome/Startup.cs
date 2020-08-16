@@ -15,7 +15,7 @@ namespace SmartHome
     public class Startup {
 
         //private const string Connection = "Data Source=db-mssql;Initial Catalog=s18911;Integrated Security=True";
-        private const string Connection = "Host=sh_postgres;Database=smarthomedb;Username=bursztyn;Password=openflow";
+        private const string Connection = "Host=192.168.15.101;Port=5432;Database=smarthomedb;Username=bursztyn;Password=openflow";
         public Startup(IConfiguration configuration){
             Configuration = configuration;
         }
@@ -24,7 +24,7 @@ namespace SmartHome
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services) {
-            services.AddDbContext<SmartHomeDbContext>(options =>            {
+            services.AddDbContext<SmartHomeDbContext>(options => {
                 options.UseNpgsql(Connection);
             });
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options => {

@@ -6,15 +6,20 @@ using System.Linq;
 using System.Threading.Tasks;
 
 namespace SmartHome.Contexts{
-    public partial class SmartHomeDbContext : DbContext{
+    public partial class SmartHomeDbContext : DbContext {
+        public virtual DbSet<Client> client { get; set; }
+        public virtual DbSet<Device> device { get; set; }
+        public virtual DbSet<Room> room { get; set; }
+        public virtual DbSet<Particulates> particulates { get; set; }
+        public virtual DbSet<Temperature> temperature { get; set; }
+
         public SmartHomeDbContext() { }
 
         public SmartHomeDbContext(DbContextOptions<SmartHomeDbContext> contextOptions) : base(contextOptions) { }
 
-        public virtual DbSet<Client> Client { get; set; }
-        public virtual DbSet<Device> Device { get; set; }
-        public virtual DbSet<Room> Room { get; set; }
-        public virtual DbSet<Particulates> Particulates { get; set; }
-        public virtual DbSet<Temperature> Temperature { get; set; }
+        protected override void OnModelCreating(ModelBuilder modelBuilder){
+            modelBuilder.UseSerialColumns();
+            base.OnModelCreating(modelBuilder);
+        }
     }
 }

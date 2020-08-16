@@ -9,17 +9,17 @@ namespace SmartHome.Models{
     public class Particulates{
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public int IdParticulates { get; set; }
+        public int idParticulates { get; set; }
 
         [ForeignKey("Device")]
-        public int IdDevice { get; set; }
+        public int idDevice { get; set; }
         [Required]
-        public DateTime Date { get; set; }
+        public DateTime date { get; set; }
         [Required]
-        public DateTime Time { get; set; }
+        public DateTime time { get; set; }
         [Required]
-        public float Pm25Value { get; set; }
+        public float pm25Value { get; set; }
         [Required]
-        public float Pm10Value { get; set; }
+        public float pm10Value { get; set; }
     }
 }

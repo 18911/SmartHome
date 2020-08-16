@@ -21,28 +21,28 @@ namespace SmartHome.Services{
         public Client Register(ClientSignUp clientSignUp){
             Client client = new Client();
 
-            if (dbContext.Client.Where(c => c.Login == clientSignUp.Login).Any()){
+            if (dbContext.client.Where(c => c.login == clientSignUp.Login).Any()){
                 client = null;
             }else {
-                Client cTmp = dbContext.Client.FirstOrDefault();
+                Client cTmp = dbContext.client.FirstOrDefault();
             
                 if (cTmp != null){
-                    Console.WriteLine(cTmp.IdClient);
-                    var maxId = dbContext.Client.Max(c => c.IdClient);
-                    client.IdClient = maxId + 1;
+                    Console.WriteLine(cTmp.idClient);
+                    var maxId = dbContext.client.Max(c => c.idClient);
+                    client.idClient = maxId + 1;
                 }
                 else {
                     Console.WriteLine("baza jest pusta");
-                    client.IdClient = 0;
+                    client.idClient = 0;
                 }
                 var salt = CreateSalt();
                 var password = Create(clientSignUp.Password, salt);
-                client.Login = clientSignUp.Login;
-                client.Email = clientSignUp.Email;
-                client.Password = password;
-                client.Salt = salt;
+                client.login = clientSignUp.Login;
+                client.email = clientSignUp.Email;
+                client.password = password;
+                client.salt = salt;
                 
-                dbContext.Client.Add(client);
+                dbContext.client.Add(client);
                 //dbContext.Database.ExecuteSqlCommand(@"SET IDENTITY_INSERT Client ON");
                 dbContext.SaveChanges();
             }
@@ -73,9 +73,9 @@ namespace SmartHome.Services{
 
         public Client Login(SignInRequest signInRequest){
             Client client = new Client();
-            if (dbContext.Client.Where(c => c.Login == signInRequest.Login).Any()) {
-                client = dbContext.Client.SingleOrDefault(c => c.Login == signInRequest.Login);
-                if (!Validate(signInRequest.Password, client.Salt, client.Password)){
+            if (dbContext.client.Where(c => c.login == signInRequest.Login).Any()) {
+                client = dbContext.client.SingleOrDefault(c => c.login == signInRequest.Login);
+                if (!Validate(signInRequest.Password, client.salt, client.password)){
                     client = null;
                 }
             }
@@ -93,8 +93,8 @@ namespace SmartHome.Services{
 
             account.client = client;
 
-            var ListRooms = dbContext.Room.Where(r => r.IdClient == client.IdClient).
-                Select(room => new Room { IdRoom = room.IdRoom, IdClient = room.IdClient, Name = room.Name }).ToList();
+            var ListRooms = dbContext.room.Where(r => r.idClient == client.idClient).
+                Select(room => new Room { idRoom = room.idRoom, idClient = room.idClient, name = room.name }).ToList();
 
             Console.WriteLine("Ef get account 2");
 
@@ -105,19 +105,19 @@ namespace SmartHome.Services{
                 RoomDevices.listParticulatesSensors = new List<ParticulatesSensor>();
                 RoomDevices.listTemperatureSensors = new List<TemperatureSensor>();
                 RoomDevices.Room = room;
-                var ListDevices = dbContext.Device.Where(d => d.IdRoom == room.IdRoom).
-                    Select(device => new Device (device.IdDevice,device.IdRoom,device.Name,device.Type )).ToList();
+                var ListDevices = dbContext.device.Where(d => d.idRoom == room.idRoom).
+                    Select(device => new Device (device.idDevice,device.idRoom,device.name,device.type )).ToList();
                 
                 foreach (Device device in ListDevices) {
-                    if (device.Type == DeviceTypes.TemperatureSensor.ToString()){
-                        var ListMeasurements = dbContext.Temperature.Where(t => t.IdDevice == device.IdDevice).
-                            Select(temp => new Temperature { IdTemperature = temp.IdTemperature, IdDevice = temp.IdDevice, TValue = temp.TValue, MDate = temp.MDate, MTime = temp.MTime }).ToList();
+                    if (device.type == DeviceTypes.TemperatureSensor.ToString()){
+                        var ListMeasurements = dbContext.temperature.Where(t => t.idDevice == device.idDevice).
+                            Select(temp => new Temperature { idTemperature = temp.idTemperature, idDevice = temp.idDevice, tValue = temp.tValue, mDate = temp.mDate, mTime = temp.mTime }).ToList();
                         var temperatureSensor = new TemperatureSensor(device, ListMeasurements);
                         RoomDevices.listTemperatureSensors.Add(temperatureSensor);
                     }
                     else {
-                        var ListMeasurements = dbContext.Particulates.Where(p => p.IdDevice == device.IdDevice).
-                            Select(part => new Particulates { IdParticulates = part.IdParticulates, IdDevice = part.IdDevice, Pm25Value = part.Pm25Value,Pm10Value = part.Pm10Value ,Date = part.Date, Time = part.Time }).ToList();
+                        var ListMeasurements = dbContext.particulates.Where(p => p.idDevice == device.idDevice).
+                            Select(part => new Particulates { idParticulates = part.idParticulates, idDevice = part.idDevice, pm25Value = part.pm25Value,pm10Value = part.pm10Value ,date = part.date, time = part.time }).ToList();
                         var particualtesSensor = new ParticulatesSensor(device, ListMeasurements);
                         RoomDevices.listParticulatesSensors.Add(particualtesSensor);
                     }
@@ -129,13 +129,13 @@ namespace SmartHome.Services{
 
             account.listRoomDevices = ListRoomDevices;
 
-            Console.WriteLine(account.client.Login + " " + account.listRoomDevices);
+            Console.WriteLine(account.client.login + " " + account.listRoomDevices);
 
             return account;
         }
 
         public IEnumerable<Temperature> GetTemperature() {
-            return dbContext.Temperature.Select(temp => new Temperature { IdTemperature = temp.IdTemperature, IdDevice = temp.IdDevice, TValue = temp.TValue, MDate = temp.MDate, MTime = temp.MTime });
+            return dbContext.temperature.Select(temp => new Temperature { idTemperature = temp.idTemperature, idDevice = temp.idDevice, tValue = temp.tValue, mDate = temp.mDate, mTime = temp.mTime });
         }
     }
 }

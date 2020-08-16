@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 namespace SmartHome.Models{
     public class TemperatureSensor : Device{
         IEnumerable<Temperature> listMeasurements { get; set; }
-        public TemperatureSensor(Device device,IEnumerable<Temperature> listMeasurements) : base(device.IdDevice, device.IdRoom, device.Name, device.Type) {
+        public TemperatureSensor(Device device,IEnumerable<Temperature> listMeasurements) : base(device.idDevice, device.idRoom, device.name, device.type) {
             this.listMeasurements = listMeasurements;
         } 
     }

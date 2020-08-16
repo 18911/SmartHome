@@ -10,16 +10,16 @@ namespace SmartHome.Models{
     public class Client{
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public int IdClient { get; set; }
+        public int idClient { get; set; }
         [Required]
-        public string Login { get; set; }
+        public string login { get; set; }
         [Email]
-        public string Email { get; set; }
+        public string email { get; set; }
         [Required]
-        public string Password { get; set; }
+        public string password { get; set; }
 
-        public string Salt { get; set; }
+        public string salt { get; set; }
 
-        public string RefreshToken { get; set; }
+        public string refreshToken { get; set; }
     }
 }

@@ -7,7 +7,7 @@ namespace SmartHome.Models{
     public class ParticulatesSensor : Device{
         IEnumerable<Particulates> listMeasurements { get; set; }
 
-        public ParticulatesSensor(Device device, IEnumerable<Particulates> listMeasurements) : base(device.IdDevice, device.IdRoom, device.Name, device.Type){
+        public ParticulatesSensor(Device device, IEnumerable<Particulates> listMeasurements) : base(device.idDevice, device.idRoom, device.name, device.type){
             this.listMeasurements = listMeasurements;
         }
     }
