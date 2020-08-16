@@ -9,7 +9,7 @@ namespace SmartHome.Services{
     public interface ISmartHomeDbService{
         public Client Register(ClientSignUp client);
         public Client Login(SignInRequest signInRequest);
-
         public Account GetAccount(Client client);
+        public IEnumerable<Temperature> GetTemperature();
     }
 }

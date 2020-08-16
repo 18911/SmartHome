@@ -55,5 +55,9 @@ namespace SmartHome.Controllers{
         public IActionResult ManageDevices() {
             return View();
         }
+
+        public IActionResult Temperature() {
+            return View("Temperature",dbService.GetTemperature());
+        }
     }
 }

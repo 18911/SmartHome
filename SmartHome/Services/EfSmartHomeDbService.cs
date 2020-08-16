@@ -111,7 +111,7 @@ namespace SmartHome.Services{
                 foreach (Device device in ListDevices) {
                     if (device.Type == DeviceTypes.TemperatureSensor.ToString()){
                         var ListMeasurements = dbContext.Temperature.Where(t => t.IdDevice == device.IdDevice).
-                            Select(temp => new Temperature { IdTemperature = temp.IdTemperature, IdDevice = temp.IdDevice, TempValue = temp.TempValue, Date = temp.Date, Time = temp.Time }).ToList();
+                            Select(temp => new Temperature { IdTemperature = temp.IdTemperature, IdDevice = temp.IdDevice, TValue = temp.TValue, MDate = temp.MDate, MTime = temp.MTime }).ToList();
                         var temperatureSensor = new TemperatureSensor(device, ListMeasurements);
                         RoomDevices.listTemperatureSensors.Add(temperatureSensor);
                     }
@@ -132,6 +132,10 @@ namespace SmartHome.Services{
             Console.WriteLine(account.client.Login + " " + account.listRoomDevices);
 
             return account;
+        }
+
+        public IEnumerable<Temperature> GetTemperature() {
+            return dbContext.Temperature.Select(temp => new Temperature { IdTemperature = temp.IdTemperature, IdDevice = temp.IdDevice, TValue = temp.TValue, MDate = temp.MDate, MTime = temp.MTime });
         }
     }
 }
