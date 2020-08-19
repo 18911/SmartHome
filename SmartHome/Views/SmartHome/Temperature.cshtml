@@ -35,8 +35,8 @@
         var arrayTValue = new Array(@Model.Count());
         var arrayTime = new Array(@Model.Count());
         @foreach (var temperature in Model){
-            @:arrayTValue.push(@temperature.t_value.ToString("HH:mm:ss"));
-            @:arrayTime.push(@temperature.m_time);
+            @:arrayTValue.push(@temperature.t_value);
+            @:arrayTime.push(@temperature.m_time.ToString("HH:mm:ss"));
         }
         Highcharts.chart('container', {
 
