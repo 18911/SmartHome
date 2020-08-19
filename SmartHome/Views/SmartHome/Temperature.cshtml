@@ -35,36 +35,54 @@
         var arrayTValue = new Array(@Model.Count());
         var arrayTime = new Array(@Model.Count());
         @foreach (var temperature in Model){
-            @:arrayTValue.push(@temperature.t_value);
+            @:arrayTValue.push(@temperature.t_value.ToString("HH:mm:ss"));
             @:arrayTime.push(@temperature.m_time);
         }
         Highcharts.chart('container', {
-            chart: {
-                type: 'line'
-            },
+
             title: {
                 text: 'Todays temperature'
             },
-            xAxis: {
-                categories: arrayTime
-            },
+
             yAxis: {
                 title: {
-                    text: 'Temperature (°C)'
+                    text: 'Temperature'
                 }
             },
-            plotOptions: {
-                line: {
-                    dataLabels: {
-                        enabled: true
-                    },
-                    enableMouseTracking: false
-                }
+
+            xAxis: {
+                title: {
+                    text: 'Time'
+                },
+                categories: arrayTime
             },
+
+            legend: {
+                layout: 'vertical',
+                align: 'right',
+                verticalAlign: 'middle'
+            },
+
             series: [{
                 name: 'Celsius',
-                data: arrayTime
+                data: arrayTValue
+            }],
+
+            responsive: {
+                rules: [{
+                    condition: {
+                        maxWidth: 500
+                    },
+                    chartOptions: {
+                        legend: {
+                            layout: 'horizontal',
+                            align: 'center',
+                            verticalAlign: 'bottom'
+                        }
+                    }
+                }]
             }
+
         });
     </script>
 </div>
