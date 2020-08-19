@@ -135,7 +135,7 @@ namespace SmartHome.Services{
         }
 
         public IEnumerable<Temperature> GetTemperature() {
-            return dbContext.temperature.Select(temp => new Temperature { id_temperature = temp.id_temperature, id_device = temp.id_device, t_value = temp.t_value, m_date = temp.m_date, m_time = temp.m_time });
+            return dbContext.temperature.Select(temp => new Temperature { id_temperature = temp.id_temperature, id_device = temp.id_device, t_value = temp.t_value, m_date = temp.m_date, m_time = DateTime.Parse(temp.m_time.ToString())});
         }
     }
 }
