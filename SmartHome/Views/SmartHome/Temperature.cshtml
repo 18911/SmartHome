@@ -8,6 +8,13 @@
     Layout = "../Shared/_Layout.cshtml";
 }
 
+@section SectionLinks{
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/modules/series-label.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+    <script src="https://code.highcharts.com/modules/export-data.js"></script>
+    <script src="https://code.highcharts.com/modules/accessibility.js"></script>
+}
 
 <div class="box">
     <script src="charts/js/highcharts.js"></script>
@@ -16,7 +23,7 @@
         <div class="row">
             <div class="col-md-10 col-md-offset-1">
                 <div class="panel panel-default">
-                    <div class="panel-heading">Temperature sensor</div>
+
                     <div class="panel-body">
                         <div id="container"></div>
                     </div>
@@ -29,35 +36,57 @@
         @foreach (var temperature in Model){
             @:tArray.push(@temperature.t_value)
         }
-        $(function(){
-          $('#container').highcharts({
-            chart: {
-                type: 'line'
-            },
-            time: {
-                timezone: 'Europe/Warsaw'
-            },
-            xAxis: {
-                title: {
-                    text: 'Time'
-                },
-              categories: js
-            },
+        Highcharts.chart('container', {
+
             title: {
-                text: 'Today'
+                text: 'Todays temperature'
             },
+
             yAxis: {
                 title: {
                     text: 'Temperature'
                 }
-                },
+            },
+
+            xAxis: {
+                title: {
+                    text: 'Time'
+                }
+            },
+
+            legend: {
+                layout: 'vertical',
+                align: 'right',
+                verticalAlign: 'middle'
+            },
+
+            plotOptions: {
+                series: {
+                    label: {
+                        connectorAllowed: false
+                    },
+                }
+            },
+
             series: [{
                 name: 'Celsius',
-                data: tArray 
-            }]
-          })
-        })
+                data: tArray
+            }],
+
+            responsive: {
+                rules: [{
+                    condition: {
+                        maxWidth: 500
+                    },
+                    chartOptions: {
+                        legend: {
+                            layout: 'horizontal',
+                            align: 'center',
+                            verticalAlign: 'bottom'
+                        }
+                    }
+                }]
+            }
+        });
     </script>
 </div>
-
-

@@ -15,7 +15,7 @@ namespace SmartHome
     public class Startup {
 
         //private const string Connection = "Data Source=db-mssql;Initial Catalog=s18911;Integrated Security=True";
-        private const string Connection = "Host=192.168.15.101;Port=5432;Database=smarthomedb;Username=bursztyn;Password=openflow";
+        private const string Connection = "Host=192.168.1.21;Port=5432;Database=smarthomedb;Username=bursztyn;Password=openflow";
         public Startup(IConfiguration configuration){
             Configuration = configuration;
         }
